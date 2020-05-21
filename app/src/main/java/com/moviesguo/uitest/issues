@@ -1,0 +1,14 @@
+郭神你好，我在看第一行代码12.7.2 充分利用系统状态栏空间的时候发现了一个问题，不知道可不可以帮我解答一下
+这节里面说将想要延伸到状态栏的控件以及其所有父布局都添加fitsSystemWindows="true"属性，之后再将theme中的statusBarColor设置为android:@android:color/transparent就可以实现
+但我尝试使用ConstraintLayout+ImageView的形式添加这些内容，结果ImageView无法延伸至状态栏中，所以我又尝试了一些组合
+
+CoordinatorLayout + AppBarLayout + CollapsingToolbarLayout + ImageView  成功
+CoordinatorLayout + CollapsingToolbarLayout + ImageView                 成功
+CoordinatorLayout + AppBarLayout + ImageView                            失败
+ConstraintLayout + CollapsingToolbarLayout + ImageView                  失败
+
+对于ConstraintLayout + ImageView这种组合我现在的方式是仅向Window添加FLAG_TRANSLUCENT_STATUS,这样就可以使View延伸至状态栏。
+
+我的问题是:
+对于这一节所说的让View延伸至状态栏的方案是否只是在CoordinatorLayout + CollapsingToolbarLayout这两个父View的情况下设置才是有效的？(我猜想可能是这两个父View的共同作用才使ImageView可以延伸至状态栏)
+如果是，那么对于ConstraintLayout + ImageView这种组合该如何去设置延伸至状态栏，我上面所说的仅向Window添加FLAG_TRANSLUCENT_STATUS是否是一个正确的方式
